@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  button {
+    border-radius: 8px;
+    height: 70px;
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    cursor: initial;
+  }
+
+  button:disabled {
+    background-color: #a3acb1;
+  }
+
+  @font-face {
+    font-family: 'Material Symbols';
+    font-style: normal;
+    src: url('assets/MaterialSymbolsOutlined[FILL,GRAD,opsz,wght].ttf')
+      format('truetype');
+  }
+}
+
+@layer components {
+  .icon {
+    font-family: 'Material Symbols';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 18px; /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  }
+}
+
+@layer utilities {
+  .scrolly {
+    overflow-y: scroll;
+  }
+  /* .scrolly::-webkit-scrollbar {
+    width: 8px;
+  }
+  .scrolly::-webkit-scrollbar-thumb {
+   background-color: #ADB2D7;
+    border-radius: 20px;
+  }
+
+  .scrolly-sm {
+    overflow-y: scroll;
+  }
+  .scrolly-sm::-webkit-scrollbar {
+    width: 4px;
+  }
+  .scrolly-sm::-webkit-scrollbar-thumb {
+    background-color: #ADB2D7;
+    border-radius: 20px;
+  } */
+}

@@ -1,0 +1,211 @@
+{
+	"name": "xanadu",
+	"version": "4.0.7",
+	"author": "xanadu.pro",
+	"description": "Xanadu Client",
+	"license": "MIT",
+	"main": "./dist/electron/main.js",
+	"grant_code": "ZdtDNG1AB7/VYU6w2p1cuBsRse1+zTi4L1bkzpINKpI=",
+	"panel": "v2board",
+	"scripts": {
+		"build:win": "node .electron-vue/build.js && electron-builder --win --x64",
+		"build:mac": "node .electron-vue/build.js && electron-builder --mac --universal",
+		"build1:win": "node .electron-vue/build.js && electron-builder --win -c ./build-configs/win.yaml",
+		"build1:mac": "node .electron-vue/build.js && electron-builder --mac -c ./build-configs/mac.yaml",
+		"build1:dir": "node .electron-vue/build.js && electron-builder --dir",
+		"build1:clean": "cross-env BUILD_TARGET=clean node .electron-vue/build.js",
+		"build1:web": "cross-env BUILD_TARGET=web node .electron-vue/build.js",
+		"dev": "node .electron-vue/dev-runner.js",
+		"e2e": "npm run pack && mocha test/e2e",
+		"pack": "npm run pack:main && npm run pack:renderer",
+		"pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.main.config.js",
+		"pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
+		"test": "npm run unit && npm run e2e",
+		"unit": "karma start test/unit/karma.conf.js",
+		"postinstall": "",
+		"product": "source ./sign.sh && npm run build:clean && node .electron-vue/build.js && concurrently --kill-others-on-fail -m 3 \\"
+		electron - builder--win - c. / build - configs / win.yaml\\ "  \\"
+		electron - builder--mac - c. / build - configs / mac.yaml\\ " \\"
+		electron - builder--linux--x64 - c. / build - configs / linux.yaml\\ "",
+		"product:mac": "source ./sign.sh && npm run build:clean && npm run build:mac",
+		"product:win": "npm run build:clean && npm run build:win",
+		"product:linux": "npm run build:clean && npm run build:linux"
+	},
+	"build": {
+		"productName": "西柚云加速",
+		"appId": "com.xanadu.pro",
+		"nsis": {
+			"oneClick": false,
+			"allowToChangeInstallationDirectory": true,
+			"deleteAppDataOnUninstall": true,
+			"perMachine": true,
+			"include": "installer.nsh"
+		},
+		"directories": {
+			"output": "build"
+		},
+		"files": ["dist/electron/**/*", "!dist/electron/static/files/**/*"],
+		"dmg": {
+			"contents": [{
+				"x": 410,
+				"y": 150,
+				"type": "link",
+				"path": "/Applications"
+			}, {
+				"x": 130,
+				"y": 150,
+				"type": "file"
+			}]
+		},
+		"mac": {
+			"icon": "static/icons/icon.icns",
+			"artifactName": "${productName}_setup_${version}.${ext}",
+			"target": "dmg",
+			"mergeASARs": true,
+			"extraResources": [{
+				"from": "static/files/default",
+				"to": "static/files/default"
+			}, {
+				"from": "static/flags",
+				"to": "static/flags"
+			}, {
+				"from": "static/index",
+				"to": "static/index"
+			}, {
+				"from": "static/files/darwin/${arch}",
+				"to": "static/files/darwin/universal"
+			}]
+		},
+		"win": {
+			"icon": "static/icons/icon.ico",
+			"artifactName": "${productName}_setup_${version}.${ext}",
+			"extraResources": [{
+				"from": "static/files/default",
+				"to": "static/files/default"
+			}, {
+				"from": "static/flags",
+				"to": "static/flags"
+			}, {
+				"from": "static/files/win/common",
+				"to": "static/files/win/common"
+			}, {
+				"from": "static/files/win/${arch}",
+				"to": "static/files/win/${arch}"
+			}]
+		},
+		"linux": {
+			"icon": "static/icons",
+			"artifactName": "${productName}_setup_${version}.${ext}"
+		}
+	},
+	"dependencies": {
+		"@babel/runtime": "^7.12.1",
+		"@dansmaculotte/vue-crisp-chat": "^0.1.0",
+		"@electron/remote": "^2.0.9",
+		"@vscode/sudo-prompt": "^9.3.1",
+		"@vue/reactivity": "^3.2.33",
+		"axios": "^0.27.2",
+		"content-disposition": "^0.5.4",
+		"dhcp": "^0.2.20",
+		"electron-log": "^4.1.0",
+		"electron-window-bounds": "^1.0.6",
+		"fix-path": "^3.0.0",
+		"fs-extra": "^10.0.0",
+		"get-port": "^5.1.1",
+		"got": "^9.6.0",
+		"koa": "^2.13.0",
+		"lodash": "^4.17.20",
+		"moment": "^2.22.2",
+		"mousetrap": "^1.6.5",
+		"node-diff3": "^3.1.0",
+		"qrcode": "^1.4.4",
+		"qrcodejs2": "^0.0.2",
+		"read-last-lines": "^1.8.0",
+		"require-from-string": "^2.0.2",
+		"svgmap": "^2.10.1",
+		"tar-stream": "^2.0.1",
+		"tunnel": "0.0.6",
+		"unix-cron": "^1.0.3",
+		"uuid": "^8.3.2",
+		"validator": "^13.7.0",
+		"velocity-animate": "^1.5.2",
+		"vue": "^2.6.10",
+		"vue-awesome-swiper": "^3.1.3",
+		"vue-clipboard2": "^0.3.3",
+		"vue-electron": "^1.0.6",
+		"vue-i18n": "8.27.2",
+		"vue-router": "^3.0.1",
+		"vuedraggable": "^2.23.2",
+		"vuex": "^3.0.1",
+		"world-map-vue": "^0.2.1",
+		"ws": "^7.2.0",
+		"yaml": "^2.0.1"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.12.3",
+		"@babel/plugin-proposal-nullish-coalescing-operator": "^7.12.1",
+		"@babel/plugin-proposal-optional-chaining": "^7.12.1",
+		"@babel/plugin-transform-runtime": "^7.12.1",
+		"@babel/preset-env": "^7.12.1",
+		"@babel/register": "^7.12.1",
+		"ajv": "^6.5.0",
+		"autoprefixer": "^10.4.2",
+		"babel-loader": "^8.2.3",
+		"cfonts": "^2.1.2",
+		"chai": "^4.1.2",
+		"chalk": "^2.4.1",
+		"concurrently": "^7.0.0",
+		"copy-webpack-plugin": "^4.5.1",
+		"cross-env": "^5.1.6",
+		"crypto-js": "^4.1.1",
+		"css-loader": "^0.28.11",
+		"del": "^3.0.0",
+		"devtron": "^1.4.0",
+		"electron": "^18.3.5",
+		"electron-builder": "^23.3.3",
+		"electron-builder-notarize": "^1.5.0",
+		"electron-debug": "^3.2.0",
+		"electron-devtools-installer": "^3.0.0",
+		"file-loader": "^1.1.11",
+		"html-webpack-plugin": "^3.2.0",
+		"inject-loader": "^4.0.1",
+		"javascript-obfuscator": "^2.10.1",
+		"js-md5": "^0.7.3",
+		"karma": "^2.0.2",
+		"karma-chai": "^0.1.0",
+		"karma-coverage": "^1.1.2",
+		"karma-electron": "^6.0.0",
+		"karma-mocha": "^1.3.0",
+		"karma-sourcemap-loader": "^0.3.7",
+		"karma-spec-reporter": "^0.0.32",
+		"karma-webpack": "^3.0.0",
+		"mini-css-extract-plugin": "0.4.0",
+		"mocha": "^5.2.0",
+		"monaco-editor": "^0.30.1",
+		"monaco-editor-webpack-plugin": "^6.0.0",
+		"multispinner": "^0.2.1",
+		"node-loader": "^0.6.0",
+		"postcss": "^8.4.6",
+		"postcss-loader": "^4.3.0",
+		"require-dir": "^1.0.0",
+		"rtf-parser": "^1.3.3",
+		"sass": "^1.50.0",
+		"sass-loader": "^7.0.3",
+		"select-prompt": "^0.3.2",
+		"spectron": "^19.0.0",
+		"style-loader": "^0.21.0",
+		"tailwindcss": "^3.0.23",
+		"uglifyjs-webpack-plugin": "^2.2.0",
+		"url-loader": "^1.0.1",
+		"vue-awesome-swiper": "^3.1.3",
+		"vue-clipboard2": "^0.3.3",
+		"vue-html-loader": "^1.2.4",
+		"vue-loader": "^15.2.4",
+		"vue-style-loader": "^4.1.0",
+		"vue-template-compiler": "^2.6.10",
+		"webpack": "^4.44.2",
+		"webpack-cli": "^3.3.11",
+		"webpack-dev-server": "^4.6.0",
+		"webpack-merge": "^4.1.3"
+	}
+}
