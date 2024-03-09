@@ -1,5 +1,6 @@
 name: 打包
-
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 on:
   push:
     branches:
@@ -21,7 +22,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       
       - name: Install dependencies
