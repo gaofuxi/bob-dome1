@@ -51,5 +51,5 @@ jobs:
       - name: Upload package
         uses: actions/upload-artifact@v2
         with:
-          name: xanadu  # 替换为你的软件包名称
+          name: my-package  # 替换为你的软件包名称  # 替换为你的软件包名称
           path: build  # 替换为你的软件包所在的目录名
