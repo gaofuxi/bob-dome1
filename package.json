@@ -9,7 +9,7 @@
   "panel": "v2board",
   "scripts": {
     "dev": "electron . --enable-logging",
-    "build": "electron-builder"
+	"build": "electron-builder --mac --config --publish always"
   },
 
   "build": {

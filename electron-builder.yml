@@ -1,0 +1,6 @@
+ publish:
+  provider: github
+  owner: '1209811525@qq.com'
+  repo: 'bbob-dome1'
+  token: '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' 
+  releaseType: 'release' 
